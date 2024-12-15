@@ -1,9 +1,9 @@
 # Sistema Colegio Privado
 
-Este es el sistema para la gestión de un colegio privado. A continuación, se presentan algunas vistas del sistema:
+Este es un sistema para la gestión de un colegio privado. A continuación, se presentan algunas vistas del sistema:
 
 ## Vista del Dashboard
-![Dashboard](https://raw.githubusercontent.com/JonatanG055/imagenes-repo/master/dash.png)
+![Dashboard](https://github.com/JonatanG055/imagenes-repo/blob/master/dash.png?raw=true)
 
 ## Vista del Login
-![Login](https://raw.githubusercontent.com/JonatanG055/imagenes-repo/master/loginsee.png)
+![Login](https://github.com/JonatanG055/imagenes-repo/blob/master/loginsee.png?raw=true)
