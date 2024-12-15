@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Académico</title>
+<!--===============================================================================================-->
+    <link rel="stylesheet" href="../styles/login.css">
+<!--===============================================================================================-->
+</head>
+<body>
+    <div class="container">
+        <div class="login-wrapper">
+          <form class="login-form" id="loginForm">
+            <!-- logo -->
+            <div class="login-logo">
+              <img src="../images/logo.png" alt="logo">
+            </div>
+            <!-- title -->
+            <h1 class="login-title">Portal Liceo San Miguel</h1>
+            <!-- username --> 
+            <div class="username">
+              <label><span class="entypo-user"></span></label>
+              <input type="text" id="username" placeholder="Username" required/>
+            </div>
+            <!-- password -->
+            <div class="password">
+              <label><span class="entypo-lock"></span></label>
+              <input type="password" id="password" placeholder="Password" required/>
+            </div>
+            <!-- button -->
+            <button class="btn" type="submit">Sign in</button>
+          </form>
+        </div> <!-- /login-wrapper -->
+      </div>  <!-- /container -->        
+
+
+<!--===============================================================================================-->	
+      <script src="../scripts/login.js"></script>
+<!--===============================================================================================-->
+      <script src="../test/AddUser.js"></script>
+<!--===============================================================================================-->
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Académico</title>
+<!--===============================================================================================-->	
+    <link rel="stylesheet" href="../styles/style.css">
+<!--===============================================================================================-->	
+    <link rel="stylesheet" href="../styles/sidebar.css">
+<!--===============================================================================================-->	
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<!--===============================================================================================-->	
+
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="app-icon">
+                    <img src="../images/logo.png" alt="logo">
+                </div>
+            </div>
+            <ul class="sidebar-list">
+                <li class="sidebar-list-item active">
+                    <a href="../pages/index.html">
+                        <img src="../images/estudiantes-icon.svg" alt="estudiantes icon">
+                        <span>Estudiantes</span>
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="../pages/profesores.html">
+                        <img src="../images/profesores-icon.svg" alt="profesores icon">
+                        <span>Profesores</span>
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="../pages/cursos.html">
+                        <img src="../images/cursos-icon.svg" alt="cursos icon">
+                        <span>Cursos</span>
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="../pages/inscripciones.html">
+                        <img src="../images/inscripciones-icon.svg" alt="inscripciones icon">
+                        <span>Inscripciones</span>
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="../pages/calificaciones.html">
+                        <img src="../images/calificaciones-icon.svg" alt="calificaciones icon">
+                        <span>Calificaciones</span>
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="../pages/asistencias.html">
+                        <img src="../images/asistencias-icon.svg" alt="asistencias icon">
+                        <span>Asistencias</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="account-info">
+                <div class="account-info-picture">
+                    <img src="../images/image-profile.png" alt="Account">
+                </div>
+                <div class="account-info-name">
+                    <p id="account-info-name" class="account-info-name">Usuario</p>
+                </div>
+                <div class="dropdown account-info-more">
+                    <button class="btn btn-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" 
+                    aria-expanded="false" style="padding: 0; margin: 0; border: none; width: auto; color: white;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-more-horizontal">
+                            <circle cx="12" cy="12" r="1" />
+                            <circle cx="19" cy="12" r="1" />
+                            <circle cx="5" cy="12" r="1" />
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" onclick="logout()">Cerrar sesión</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="app-content">
+            <div class="app-content-header">
+                <h1 class="app-content-headerText">Estudiantes</h1>
+            </div>
+            <div class="app-content-actions">
+                <input class="search-bar" placeholder="Buscar..." type="text">
+                <div class="app-content-actions-wrapper">
+                    <button type="button" id="addStudentButton" class="btn btn-primary" data-toggle="modal"
+                        data-target="#addModal">Añadir Estudiante</button>
+                </div>
+            </div>
+
+            <!-- Tabla de Datos -->
+            <div class="contents-area-wrapper tableView">
+                <div class="contents-header">
+                    <div class="content-cell">Nombre</div>
+                    <div class="content-cell">Apellido</div>
+                    <div class="content-cell">Fecha Nacimiento</div>
+                    <div class="content-cell">Dirección</div>
+                    <div class="content-cell">Teléfono</div>
+                    <div class="content-cell">Email</div>
+                    <div class="content-cell">Acciones</div>
+                </div>
+                <div id="studentList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Añadir -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content"
+                style="background-color: var(--app-content-secondary-color); color: var(--app-content-main-color);">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalTitle">Añadir Estudiante</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        style="color: var(--app-content-main-color);">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulario de Añadir Estudiante -->
+                    <form id="addStudentForm">
+                        <div class="form-group">
+                            <label for="addStudentName">Nombre</label>
+                            <input type="text" class="form-control" id="addStudentName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addStudentLastName">Apellido</label>
+                            <input type="text" class="form-control" id="addStudentLastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addStudentBirthDate">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" id="addStudentBirthDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addStudentAddress">Dirección</label>
+                            <input type="text" class="form-control" id="addStudentAddress" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addStudentPhone">Teléfono</label>
+                            <input type="tel" class="form-control" id="addStudentPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addStudentEmail">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="addStudentEmail" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="addStudentForm" class="btn btn-primary">Añadir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Editar -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content"
+                style="background-color: var(--app-content-secondary-color); color: var(--app-content-main-color);">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalTitle">Editar Estudiante</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        style="color: var(--app-content-main-color);">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulario de Editar Estudiante -->
+                    <form id="editStudentForm">
+                        <div class="form-group">
+                            <label for="editStudentName">Nombre</label>
+                            <input type="text" class="form-control" id="editStudentName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editStudentLastName">Apellido</label>
+                            <input type="text" class="form-control" id="editStudentLastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editStudentBirthDate">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" id="editStudentBirthDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editStudentAddress">Dirección</label>
+                            <input type="text" class="form-control" id="editStudentAddress" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editStudentPhone">Teléfono</label>
+                            <input type="tel" class="form-control" id="editStudentPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editStudentEmail">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="editStudentEmail" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="editStudent()">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal de Eliminar -->
+    <div class=" modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content"
+                style="background-color: var(--app-content-secondary-color); color: var(--app-content-main-color);">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalTitle">Eliminar Estudiante</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        style="color: var(--app-content-main-color);">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas eliminar a este estudiante?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteStudent()">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!--===============================================================================================-->	
+    <script src="../scripts/info-user.js"></script>
+<!--===============================================================================================-->	
+    <script src=" https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!--===============================================================================================-->	
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->	
+    <script src="../scripts/students.js"></script>
+<!--===============================================================================================-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!--===============================================================================================-->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<!--===============================================================================================-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<!--===============================================================================================-->
+    <script src="../scripts/logout.js"></script>
+<!--===============================================================================================-->
+</body>
+
+</html>
